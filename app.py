@@ -68,7 +68,7 @@ def main():
     user_input = st.text_area("Paste entire ToS, Privacy Policy, or any other user agreement here")
 
     if st.button('Decode'):
-        with st.spinner('Decoding the text...'):
+        with st.spinner('Decoding the text. A glass of water and deep breaths will prepare you best for what comes next.'):
             loop = asyncio.new_event_loop()
             asyncio.set_event_loop(loop)
             try:
