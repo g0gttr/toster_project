@@ -7,7 +7,7 @@ import re
 class TosterApp:
     def __init__(self):
         self.history = []
-        self.api_key = st.secrets["secrets"]["CLAUD_API_KEY"]
+        self.api_key = st.secrets["secrets"]["CLAUDE_API_KEY"]
         self.client = anthropic.Client(self.api_key)
 
     def is_legal_text(self, text):
