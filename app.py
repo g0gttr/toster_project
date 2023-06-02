@@ -1,12 +1,14 @@
 import os
 import streamlit as st
-from Claude import Claude
+import anthropic
+import asyncio
 import re
 
 class TosterApp:
     def __init__(self):
         self.history = []
-        self.claude = Claude()
+        self.api_key = st.secrets["secrets"]["CLAUD_API_KEY"]
+        self.client = anthropic.Client(self.api_key)
 
     def is_legal_text(self, text):
         legal_keywords = ['terms and conditions', 'terms of use', 'privacy policy', 'acceptable use policy', 'user agreement', 'tos', 'tou', 't&c', 't&cs', 'end-user license agreement','eula','licence', 'agreement', 'agreements', 'disclaimer', 'party', 'parties', 'policy', 'liability', 
@@ -14,7 +16,7 @@ class TosterApp:
         text_lower = text.lower()
         return any(re.search(r'\b' + kw + r'\b', text_lower) for kw in legal_keywords)
 
-    def analyze_text_with_claude(self, text, prompt):
+    async def analyze_text_with_claude(self, text, prompt):
         # Check if the text seems like a legal agreement
         if not self.is_legal_text(text):
             return "The provided text does not seem to be a legal agreement."
@@ -27,9 +29,17 @@ class TosterApp:
         joined_history = ''.join(self.history) + "\n\nAssistant:"
 
         try:
-            # Get Claude's response
-            response_text = self.claude.response(joined_history)
-            response_text_with_disclaimer = response_text + "\n\nToster provides AI-driven insights powered by Anthropic's Claude. Consult legal, ethical, and privacy experts for professional advice."
+            resp = await self.client.acompletion(
+                prompt=joined_history,
+                stop_sequences=['Human:'],
+                model="claude-v1",
+                max_tokens_to_sample=500,
+                temperature=0.3
+            )
+
+            # Add Claude's response to history
+            response_text = resp['completion']
+            response_text_with_disclaimer = response_text + "\n\nToster provides AI-driven insights powered by Anthropics's Claude. Consult legal, ethical, and privacy experts for professional advice."
             self.history.append(f"\n\nAssistant: {response_text_with_disclaimer}")
             
             return response_text_with_disclaimer
@@ -38,7 +48,7 @@ class TosterApp:
 
 # Streamlit interface
 def main():
-    # Extract API key and prompt from secrets
+    # Extract prompt from secrets
     user_prompt = st.secrets["multi_line"]["prompt"]
 
     toster = TosterApp()
@@ -52,8 +62,10 @@ def main():
 
     if st.button('Decode'):
         with st.spinner('Decoding the text...'):
+            loop = asyncio.new_event_loop()
+            asyncio.set_event_loop(loop)
             try:
-                result = toster.analyze_text_with_claude(user_input, user_prompt)
+                result = loop.run_until_complete(toster.analyze_text_with_claude(user_input, user_prompt))
                 st.write(result)
                 st.markdown("[Decode Another Agreement](/)")
             except Exception as e:
