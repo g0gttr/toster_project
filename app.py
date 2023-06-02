@@ -5,7 +5,7 @@ import asyncio
 import re
 
 st.set_page_config(
-   page_title="Toster",
+   page_title=":bookmark_tabs: Toster",
    page_icon="🧊",
    layout="centered",
    initial_sidebar_state="expanded",
