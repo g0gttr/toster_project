@@ -4,6 +4,13 @@ import anthropic
 import asyncio
 import re
 
+st.set_page_config(
+   page_title="Ex-stream-ly Cool App",
+   page_icon="🧊",
+   layout="wide",
+   initial_sidebar_state="expanded",
+)
+
 class TosterApp:
     def __init__(self):
         self.history = []
