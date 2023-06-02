@@ -5,7 +5,7 @@ import asyncio
 import re
 
 st.set_page_config(
-   page_title=":bookmark_tabs: Toster",
+   page_title="Toster",
    page_icon="🧊",
    layout="centered",
    initial_sidebar_state="expanded",
@@ -60,9 +60,8 @@ def main():
 
     toster = TosterApp()
 
-    # New look and feel
-    st.image('toster_logo.png', width=50)
-    st.title('Toster')
+    # New look and feel 
+    st.title(':bookmark_tabs: Toster')
     st.markdown("User agreements made clear.")
 
     user_input = st.text_area("Paste entire ToS, Privacy Policy, or any other user agreement here")
