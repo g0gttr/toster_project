@@ -1,7 +1,6 @@
 import os
 import streamlit as st
 from Claude import Claude
-import asyncio
 import re
 
 class TosterApp:
@@ -30,7 +29,7 @@ class TosterApp:
         try:
             # Get Claude's response
             response_text = self.claude.response(joined_history)
-            response_text_with_disclaimer = response_text + "\n\nToster provides AI-driven insights powered by Anthropics's Claude. Consult legal, ethical, and privacy experts for professional advice."
+            response_text_with_disclaimer = response_text + "\n\nToster provides AI-driven insights powered by Anthropic's Claude. Consult legal, ethical, and privacy experts for professional advice."
             self.history.append(f"\n\nAssistant: {response_text_with_disclaimer}")
             
             return response_text_with_disclaimer
