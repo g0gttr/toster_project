@@ -46,7 +46,13 @@ class TosterApp:
 
             # Add Claude's response to history
             response_text = resp['completion']
-            response_text_with_disclaimer = response_text + "\n\nToster provides AI-driven insights powered by Anthropic. Consult a legal expert for professional advice."
+            disclaimer = "Prototype in progress. Expect errors. Consult a legal expert for professional advice."
+            powered_by = "Toster is powered by Anthropic."
+            project_link = '[Project](https://lablab.ai/event/anthropic-ai-hackathon/better-world/toster)'
+            contact_link = '[Contact](mailto:toster.streamlit.app@gmail.com)'
+
+            response_text_with_disclaimer = f"{response_text}\n\n{disclaimer}\n{powered_by}\n{project_link} | {contact_link}"
+
             self.history.append(f"\n\nAssistant: {response_text_with_disclaimer}")
             
             return response_text_with_disclaimer
