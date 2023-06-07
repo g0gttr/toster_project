@@ -51,7 +51,7 @@ class TosterApp:
             project_link = '[Project](https://lablab.ai/event/anthropic-ai-hackathon/better-world/toster)'
             contact_link = '[Contact](mailto:toster.streamlit.app@gmail.com)'
 
-            response_text_with_disclaimer = f"{response_text}\n\n{disclaimer}\n{powered_by}\n{project_link} | {contact_link}"
+            response_text_with_disclaimer = f"{response_text}\n\n{disclaimer}\n\n{powered_by}\n\n{project_link} | {contact_link}"
 
             self.history.append(f"\n\nAssistant: {response_text_with_disclaimer}")
             
