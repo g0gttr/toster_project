@@ -58,7 +58,7 @@ class TosterApp:
             response_text = resp['completion']
             disclaimer = "Prototype in progress. Results may vary. Consult a legal expert for professional advice."
             powered_by = "Toster is powered by Anthropic."
-            project_link = '[Made for the Anthropic AI Hackathon @ Lablab.ai](https://lablab.ai/event/anthropic-ai-hackathon/better-world/toster)'
+            project_link = '[Hackathon](https://lablab.ai/event/anthropic-ai-hackathon/better-world/toster)'
             contact_link = '[Contact](mailto:toster.streamlit.app@gmail.com)'
 
             response_text_with_disclaimer = f"{response_text}\n\n{disclaimer}\n\n{powered_by}\n\n{project_link} | {contact_link}"
