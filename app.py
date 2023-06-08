@@ -56,7 +56,7 @@ class TosterApp:
 
             # Add Claude's response to history
             response_text = resp['completion']
-            disclaimer = "Prototype in progress. Results may vary. Consult a legal expert for professional advice."
+            disclaimer = "Prototype. Results may vary. Consult a legal expert for professional advice."
             powered_by = "Toster is powered by Anthropic."
             project_link = '[Hackathon](https://lablab.ai/event/anthropic-ai-hackathon/better-world/toster)'
             contact_link = '[Contact](mailto:toster.streamlit.app@gmail.com)'
