@@ -56,9 +56,9 @@ class TosterApp:
 
             # Add Claude's response to history
             response_text = resp['completion']
-            disclaimer = "Prototype in progress. Expect errors. Consult a legal expert for professional advice."
+            disclaimer = "Prototype in progress. Results may vary. Consult a legal expert for professional advice."
             powered_by = "Toster is powered by Anthropic."
-            project_link = '[Project](https://lablab.ai/event/anthropic-ai-hackathon/better-world/toster)'
+            project_link = '[Made for the Anthropic AI Hackathon @ Lablab.ai](https://lablab.ai/event/anthropic-ai-hackathon/better-world/toster)'
             contact_link = '[Contact](mailto:toster.streamlit.app@gmail.com)'
 
             response_text_with_disclaimer = f"{response_text}\n\n{disclaimer}\n\n{powered_by}\n\n{project_link} | {contact_link}"
@@ -82,14 +82,14 @@ def main():
 
     user_input = st.text_area("Paste entire ToS, Privacy Policy, or any other user agreement here")
 
-    if st.button('Decode'):
+    if st.button('Crisp'):
         with st.spinner(random.choice(toster.quotes)):
             loop = asyncio.new_event_loop()
             asyncio.set_event_loop(loop)
             try:
                 result = loop.run_until_complete(toster.analyze_text_with_claude(user_input, user_prompt))
                 st.write(result)
-                st.markdown("[Decode Another Agreement](/)")
+                st.markdown("[Crisp Up Another Agreement](/)")
             except Exception as e:
                 st.error(f'An error occurred: {str(e)}')
 
