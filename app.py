@@ -3,6 +3,7 @@ import streamlit as st
 import anthropic
 import asyncio
 import re
+import random
 
 st.set_page_config(
    page_title="Toster",
@@ -16,7 +17,16 @@ class TosterApp:
         self.history = []
         self.api_key = st.secrets["secrets"]["CLAUDE_API_KEY"]
         self.client = anthropic.Client(self.api_key)
-
+        self.quotes = [
+            "91% of consumers reject the notion that discounts justify clandestine data collection by companies.",
+            "71% don't accept that it's fair for a store, physical or online, to monitor their online activity just because they use the store's complimentary Wi-Fi.",
+            "55% of consumers disagree with the premise that it's acceptable for a shopping venue to utilize their personal data to refine the services offered to them, despite potential benefits.",
+            "99% of user agreements are as complex as academic journals.",
+            "91% of users accept agreements without reading them.",
+            "Most people need 1.5 hours to read a user agreement.",
+            "The difficult language in user agreements often hides hostile clauses and significant risks for users."
+        ]
+      
     def is_legal_text(self, text):
         legal_keywords = ['terms and conditions', 'terms of use', 'privacy policy', 'acceptable use policy', 'user agreement', 'tos', 'tou', 't&c', 't&cs', 'end-user license agreement','eula','licence', 'agreement', 'agreements', 'disclaimer', 'party', 'parties', 'policy', 'liability', 
                           'indemnify', 'jurisdiction', 'binding', 'governing law'] 
@@ -73,7 +83,7 @@ def main():
     user_input = st.text_area("Paste entire ToS, Privacy Policy, or any other user agreement here")
 
     if st.button('Decode'):
-        with st.spinner('Decoding the text. A glass of water and deep breaths will prepare you best for what comes next.'):
+        with st.spinner(random.choice(toster.quotes)):
             loop = asyncio.new_event_loop()
             asyncio.set_event_loop(loop)
             try:
