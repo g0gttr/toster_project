@@ -71,10 +71,6 @@ class TosterApp:
 
 # Streamlit interface
 def main():
-    # Extract prompt from secrets
-    user_prompt = st.secrets["multi_line"]["prompt"]
-    user_prompt = user_prompt.replace('{{USER_AGREEMENT}}', user_input)
-
 
     toster = TosterApp()
 
@@ -83,6 +79,10 @@ def main():
     st.markdown("User agreements made clear.")
 
     user_input = st.text_area("Paste entire ToS, Privacy Policy, or any other user agreement here")
+
+    # Extract prompt from secrets
+    user_prompt = st.secrets["multi_line"]["prompt"]
+    user_prompt = user_prompt.replace('{{USER_AGREEMENT}}', user_input)
 
     if st.button('Crisp'):
         with st.spinner(random.choice(toster.quotes)):
@@ -97,3 +97,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
