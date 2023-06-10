@@ -18,14 +18,13 @@ class TosterApp:
         self.api_key = st.secrets["secrets"]["CLAUDE_API_KEY"]
         self.client = anthropic.Client(self.api_key)
         self.quotes = [
-            "97% of people ages 18-34 accept user agreements without reading them."
-            "91% of people reject the notion that discounts justify clandestine data collection by companies.",
-            "71% of people don't accept that it's fair for a store, physical or online, to monitor their online activity just because they use the store's complimentary Wi-Fi.",
-            "55% of people disagree with the premise that it's acceptable for a shopping venue to utilize their personal data to refine the services offered to them, despite potential benefits.",
-            "99% of user agreements are as complex as academic journals.",
-            "91% of people accept user agreements without reading them.",
-            "Most people need 1.5 hours to read a user agreement.",
-            "The difficult language in user agreements often hides hostile clauses and significant risks."
+            "97% of people ages 18-34 accept user agreements without reading them",
+            "An average person needs over 30 working days per year to read privacy policies",
+            "Consent fatigue leads to unread policy acceptance, undermining regulation and allowing harmful policies to persist",
+            "99% of user agreements are as complex as academic journals",
+            "91% of people accept user agreements without reading them",
+            "Most people need 1.5 hours to read a user agreement",
+            "The difficult language in user agreements often hides hostile clauses and significant risks"
         ]
       
     def is_legal_text(self, text):
