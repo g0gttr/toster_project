@@ -50,7 +50,7 @@ class TosterApp:
                 prompt=joined_history,
                 stop_sequences=['Human:'],
                 model="claude-v1",
-                max_tokens_to_sample=700,
+                max_tokens_to_sample=1000,
                 temperature=0.3
             )
 
