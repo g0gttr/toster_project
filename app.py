@@ -51,7 +51,7 @@ class TosterApp:
                 stop_sequences=['Human:'],
                 model="claude-v1",
                 max_tokens_to_sample=700,
-                temperature=0.3
+                temperature=0.2
             )
 
             # Add Claude's response to history
