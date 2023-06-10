@@ -73,6 +73,8 @@ class TosterApp:
 def main():
     # Extract prompt from secrets
     user_prompt = st.secrets["multi_line"]["prompt"]
+    user_prompt = user_prompt.replace('{{USER_AGREEMENT}}', user_input)
+
 
     toster = TosterApp()
 
