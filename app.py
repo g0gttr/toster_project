@@ -16,7 +16,7 @@ class TosterApp:
     def __init__(self):
         self.history = []
         self.api_key = st.secrets["secrets"]["CLAUDE_API_KEY"]
-        self.client = anthropic.Client(self.api_key)
+        self.client = anthropic.AsyncAnthropic(api_key=self.api_key)
         self.quotes = [
             "97% of people ages 18-34 accept user agreements without reading them",
             "An average person needs over 30 working days per year to read privacy policies",
@@ -46,16 +46,17 @@ class TosterApp:
         joined_history = ''.join(self.history) + "\n\nAssistant:"
 
         try:
-            resp = await self.client.acompletion(
-                prompt=joined_history,
-                stop_sequences=['Human:'],
-                model="claude-v1",
-                max_tokens_to_sample=1000,
-                temperature=0.3
+            resp = await self.client.completions.create(
+               model="claude-v1",
+               max_tokens_to_sample=1000,
+               prompt=joined_history,
+               stop_sequences=['Human:'],
+               temperature=0.3
             )
 
+
             # Add Claude's response to history
-            response_text = resp['completion']
+            response_text = resp.completion
             disclaimer = "Prototype. Results may vary. Consult a legal expert for professional advice."
             powered_by = "Toster is powered by Anthropic."
             project_link = '[Hackathon](https://lablab.ai/event/anthropic-ai-hackathon/better-world/toster)'
