@@ -47,7 +47,7 @@ class TosterApp:
 
         try:
             resp = await self.client.completions.create(
-               model="claude-v1",
+               model="claude-2",
                max_tokens_to_sample=1000,
                prompt=joined_history,
                stop_sequences=['Human:'],
