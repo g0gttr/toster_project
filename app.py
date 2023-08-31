@@ -15,7 +15,7 @@ st.set_page_config(
 class TosterApp:
     def __init__(self):
         self.history = []
-        self.api_key = st.secrets["secrets"]["CLAUDE_API_KEY"]
+        self.api_key = st.secrets["CLAUDE_API_KEY"]
         self.client = anthropic.AsyncAnthropic(api_key=self.api_key)
         self.quotes = [
             "97% of people ages 18-34 accept user agreements without reading them",
